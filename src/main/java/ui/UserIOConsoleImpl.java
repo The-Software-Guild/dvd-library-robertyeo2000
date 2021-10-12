@@ -1,12 +1,13 @@
 package ui;
 
+import dto.Dvd;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
 public class UserIOConsoleImpl implements UserIO {
-    public static final String DATE_FORMAT = "dd/MM/yyyy";
 
     @Override
     public void print(String message) {
@@ -130,7 +131,7 @@ public class UserIOConsoleImpl implements UserIO {
     @Override
     public Date readDate(String prompt) {
         UserIO io = new UserIOConsoleImpl();
-        DateFormat formatter = new SimpleDateFormat(DATE_FORMAT);
+        DateFormat formatter = new SimpleDateFormat(Dvd.DATE_FORMAT);
         Date input;
         do {
             String inputStr = io.readString(prompt);
@@ -139,7 +140,7 @@ public class UserIOConsoleImpl implements UserIO {
                 return input;
             }
             catch (Exception e) {
-                io.print("Was expecting a date: " + inputStr + " is not in " + DATE_FORMAT + " format.");
+                io.print("Was expecting a date: " + inputStr + " is not in " + Dvd.DATE_FORMAT + " format.");
             }
         } while (true);
     }

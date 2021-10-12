@@ -3,6 +3,8 @@ package dto;
 import java.util.Date;
 
 public class Dvd {
+    public final static String DATE_FORMAT = "dd/MM/yyyy";
+
     private String title;
     private Date releaseDate;
     private String mpaaRating;

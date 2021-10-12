@@ -1,18 +1,20 @@
 package controller;
 
-import dao.ClassRosterDao;
+import dao.DvdLibraryDao;
 import dto.Dvd;
-import ui.ClassRosterView;
+import ui.DvdLibraryView;
 import ui.UserIO;
 import ui.UserIOConsoleImpl;
 
-public class ClassRosterController {
+import java.util.List;
 
-    private ClassRosterView view;
-    private ClassRosterDao dao;
-    private UserIO io = new UserIOConsoleImpl();
+public class DvdLibraryController {
 
-    public ClassRosterController(ClassRosterDao dao, ClassRosterView view) {
+    private final DvdLibraryView view;
+    private final DvdLibraryDao dao;
+    private final UserIO io = new UserIOConsoleImpl();
+
+    public DvdLibraryController(DvdLibraryDao dao, DvdLibraryView view) {
         this.dao = dao;
         this.view = view;
     }
@@ -37,12 +39,11 @@ public class ClassRosterController {
                     io.print("EDIT DVD INFO");
                     break;
                 case 4:
-                    // TODO: 12/10/2021  
-                    io.print("VIEW ALL DVDs");
+                    viewAllDvds();
                     break;
                 case 5:
                     // TODO: 12/10/2021  
-                    io.print("VIEW SINGLE DVD");
+                    viewSingleDvd();
                     break;
                 case 6:
                     keepGoing = false;
@@ -64,5 +65,20 @@ public class ClassRosterController {
     private void addDvd() {
         Dvd newDvd = view.getDvdInfo();
         view.displayAddDvdBanner(dao.addDvd(newDvd), newDvd.getTitle());
+    }
+
+    private void viewAllDvds() {
+        List<Dvd> dvdList = dao.getAllDvds();
+        view.displayDvdList(dvdList);
+    }
+
+    private void viewSingleDvd() {
+        String dvdTitleChoice = view.getDvdTitleChoice();
+        Dvd dvdChoice = dao.getDvd(dvdTitleChoice);
+        if (dvdChoice == null) {
+            view.dvdDoesNotExist(dvdTitleChoice);
+        } else {
+            view.displaySingleDvd(dvdChoice);
+        }
     }
 }

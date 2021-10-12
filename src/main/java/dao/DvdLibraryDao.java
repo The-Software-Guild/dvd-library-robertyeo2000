@@ -4,7 +4,7 @@ import dto.Dvd;
 
 import java.util.List;
 
-public interface ClassRosterDao {
+public interface DvdLibraryDao {
 
     boolean addDvd(Dvd dvd);
 
@@ -14,6 +14,6 @@ public interface ClassRosterDao {
 
     List<Dvd> getAllDvds();
 
-    Dvd getDvd(Dvd dvd);
+    Dvd getDvd(String dvdTitle);
 
 }

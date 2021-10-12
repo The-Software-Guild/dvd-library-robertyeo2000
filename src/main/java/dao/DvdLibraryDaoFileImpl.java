@@ -4,9 +4,9 @@ import dto.Dvd;
 
 import java.util.*;
 
-public class ClassRosterDaoFileImpl implements ClassRosterDao {
+public class DvdLibraryDaoFileImpl implements DvdLibraryDao {
 
-    private Map<String, Dvd> dvds = new HashMap<>();
+    private final Map<String, Dvd> dvds = new HashMap<>();
 
     @Override
     public boolean addDvd(Dvd dvd) {
@@ -30,11 +30,11 @@ public class ClassRosterDaoFileImpl implements ClassRosterDao {
 
     @Override
     public List<Dvd> getAllDvds() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return new ArrayList<>(dvds.values());
     }
 
     @Override
-    public Dvd getDvd(Dvd dvd) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Dvd getDvd(String dvdTitle) {
+        return dvds.get(dvdTitle);
     }
 }
