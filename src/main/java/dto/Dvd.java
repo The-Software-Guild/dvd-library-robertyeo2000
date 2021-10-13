@@ -1,9 +1,12 @@
 package dto;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Dvd {
-    public final static String DATE_FORMAT = "dd/MM/yyyy";
+    public final static String DATE_PATTERN = "dd/MM/yyyy";
+    public final static DateFormat DATE_FORMAT = new SimpleDateFormat(DATE_PATTERN);
 
     private String title;
     private Date releaseDate;

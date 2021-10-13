@@ -1,9 +1,6 @@
 package ui;
 
 import dto.Dvd;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -131,16 +128,15 @@ public class UserIOConsoleImpl implements UserIO {
     @Override
     public Date readDate(String prompt) {
         UserIO io = new UserIOConsoleImpl();
-        DateFormat formatter = new SimpleDateFormat(Dvd.DATE_FORMAT);
         Date input;
         do {
             String inputStr = io.readString(prompt);
             try {
-                input = formatter.parse(inputStr);
+                input = Dvd.DATE_FORMAT.parse(inputStr);
                 return input;
             }
             catch (Exception e) {
-                io.print("Was expecting a date: " + inputStr + " is not in " + Dvd.DATE_FORMAT + " format.");
+                io.print("Was expecting a date: " + inputStr + " is not in " + Dvd.DATE_PATTERN + " format.");
             }
         } while (true);
     }

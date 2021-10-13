@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 
 public class DvdLibraryView {
-
     private final UserIO io;
 
     public DvdLibraryView(UserIO io) {
@@ -32,7 +31,7 @@ public class DvdLibraryView {
 
     public Dvd getDvdInfo() {
         String title = io.readString("Title");
-        Date releaseDate = io.readDate("Date (" + Dvd.DATE_FORMAT + ")");
+        Date releaseDate = io.readDate("Date (" + Dvd.DATE_PATTERN + ")");
         String mpaaRating = io.readString("MPAA Rating");
         String directorName = io.readString("Director's Name");
         String studio = io.readString("Studio");
@@ -66,7 +65,7 @@ public class DvdLibraryView {
     }
 
     public void displaySingleDvd(Dvd dvd) {
-        DateFormat formatter = new SimpleDateFormat(Dvd.DATE_FORMAT);
+        DateFormat formatter = new SimpleDateFormat(Dvd.DATE_PATTERN);
         io.print("Title: " + dvd.getTitle());
         io.print("Released: " + formatter.format(dvd.getReleaseDate()));
         io.print("MPAA Rating: " + dvd.getMpaaRating());
@@ -109,5 +108,10 @@ public class DvdLibraryView {
 
     public void displayExitBanner() {
         io.print("Good bye.");
+    }
+
+    public void displayErrorMessage(String errorMessage) {
+        io.print("ERROR!!");
+        io.print(errorMessage);
     }
 }
