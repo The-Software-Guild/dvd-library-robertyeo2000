@@ -28,7 +28,7 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao {
     public boolean removeDvd(Dvd dvd) throws DvdLibraryDaoException {
         loadDvd();
         if (dvds.containsKey(dvd.getTitle())) {
-            dvds.remove(dvd.getTitle(), dvd);
+            dvds.remove(dvd.getTitle());
             writeDvd();
             return true;
         } else {
@@ -58,7 +58,7 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao {
     }
 
     private Dvd unmarshallDvd(String dvdAsText) throws DvdLibraryDaoException {
-        String[] dvdTokens = dvdAsText.split(DELIMITER);
+        String[] dvdTokens = dvdAsText.split(DELIMITER, 6);
         String title = dvdTokens[0];
         Date releaseDate;
         try {

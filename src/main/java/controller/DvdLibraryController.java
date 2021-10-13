@@ -98,6 +98,7 @@ public class DvdLibraryController {
             view.displayDvdDoesNotExistError(title);
             return;
         }
+        view.displaySingleDvd(oldDvd);
         view.displayEditInstructions();
         Dvd newDvd = view.getDvdInfo();
         if (dao.editDvd(oldDvd, newDvd)) {
