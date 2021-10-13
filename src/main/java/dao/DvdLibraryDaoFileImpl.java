@@ -20,12 +20,21 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao {
 
     @Override
     public boolean removeDvd(Dvd dvd) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (dvds.containsKey(dvd.getTitle())) {
+            dvds.remove(dvd.getTitle(), dvd);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
-    public boolean editDvd(Dvd dvd) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public boolean editDvd(Dvd oldDvd, Dvd newDvd) {
+        if (removeDvd(oldDvd)) {
+            addDvd(newDvd);
+            return true;
+        }
+        return false;
     }
 
     @Override

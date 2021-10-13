@@ -10,7 +10,7 @@ public interface DvdLibraryDao {
 
     boolean removeDvd(Dvd dvd);
 
-    boolean editDvd(Dvd dvd);
+    boolean editDvd(Dvd oldDvd, Dvd newDvd);
 
     List<Dvd> getAllDvds();
 

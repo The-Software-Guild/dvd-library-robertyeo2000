@@ -21,13 +21,16 @@ public class DvdLibraryView {
         io.print("2. Remove DVD from collection");
         io.print("3. Edit info of existing DVD");
         io.print("4. View list of all DVDs in collection");
-        io.print("5. View single DVD info");
+        io.print("5. Search by DVD title");
         io.print("6. Quit");
         return io.readInt("Please select a number from above choices: ", 1, 6);
     }
 
-    public Dvd getDvdInfo() {
+    public void displayAddDvdBanner() {
         io.print("\nAdd DVD:");
+    }
+
+    public Dvd getDvdInfo() {
         String title = io.readString("Title");
         Date releaseDate = io.readDate("Date (" + Dvd.DATE_FORMAT + ")");
         String mpaaRating = io.readString("MPAA Rating");
@@ -39,11 +42,11 @@ public class DvdLibraryView {
 
     public void displayAddDvdBanner(boolean added, String dvdTitle) {
         if (added) {
-            io.readString(dvdTitle + " Successfully Added. Press enter to continue.");
+            io.print(dvdTitle + " Successfully Added.");
         } else {
-            io.readString(dvdTitle + " NOT added as it was already in the library." +
-                    " Press enter to continue");
+            io.print(dvdTitle + " NOT added as it was already in the library.");
         }
+        io.readString("Press enter to continue.");
     }
 
     public void displayDvdList(List<Dvd> DvdList) {
@@ -54,8 +57,11 @@ public class DvdLibraryView {
         io.readString("Press enter to continue.");
     }
 
+    public void displaySearchByDvdTitleBanner() {
+        io.print("Search by DVD.");
+    }
+
     public String getDvdTitleChoice() {
-        io.print("Search by DVD");
         return io.readString("Enter the title of the DVD: ");
     }
 
@@ -70,9 +76,38 @@ public class DvdLibraryView {
         io.readString("Press enter to continue.");
     }
 
-    public void dvdDoesNotExist(String title) {
+    public void displayDvdDoesNotExistError(String title) {
         io.print("There is no DVD with title '" + title + "' in the library.");
         io.readString("Press enter to continue.");
     }
 
+    public void displayRemoveDvdBanner() {
+        io.print("Remove DVD.");
+    }
+
+    public void displaySuccessfullyRemovedBanner(String title) {
+        io.print(title + " successfully removed.");
+        io.readString("Press enter to continue.");
+    }
+
+    public void displayEditDvdBanner() {
+        io.print("Edit DVD.");
+    }
+
+    public void displayEditInstructions() {
+        io.print("Now enter the details of the DVD you wish to replace it with.");
+    }
+
+    public void displaySuccessfullyEditedBanner(String oldTitle) {
+        io.print(oldTitle + " successfully edited.");
+        io.readString("Press enter to continue.");
+    }
+
+    public void displayUnknownCommandBanner() {
+        io.print("Error. Unknown Command. Please try again with one of the above menu options.");
+    }
+
+    public void displayExitBanner() {
+        io.print("Good bye.");
+    }
 }
